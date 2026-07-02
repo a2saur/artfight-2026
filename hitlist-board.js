@@ -22,16 +22,16 @@ const hitList = [
     {
         name:"Moth",
         artist:"lizimire",
-        img_src:"https://images.artfight.net/character/th_b5oSIksQJisucuFydrcWpl6gNVell1IoBcWk9d8jjDginr072ExnupPhl5sX.png?t=1782942570",
-        hit:false,
-        active:true,
+        img_src:"https://images.artfight.net/attack/th_ai23Yok9g6jnW5J2JxPrKsj2Aho8hmYGbSo6VPNTuYv4Z7goFFFzgu2bPHhy.png?t=1783023543",
+        hit:true,
+        active:false,
     },
     {
         name:"Ophelia",
         artist:"Emiq00",
         img_src:"https://images.artfight.net/character/VH79bJfEpBgmHeaTOk86WPtPUuaS0hFJ2IOlDwUGQJTrDUAgMgGj7rKKumYB.jpeg?t=1659725685",
         hit:false,
-        active:false,
+        active:true,
     },
     {
         name:"Andria",
@@ -61,6 +61,13 @@ const hitList = [
         hit:false,
         active:false,
     },
+    {
+        name:"Minnie Moonstone",
+        artist:"Mytholu",
+        img_src:"https://images.artfight.net/character/th_AbXlrgEmmg6u4mZ9EaoOvlx7Deq8FfYmOgwDKNV3z5fMRg0bSQfOXyDKK2Gg.png?t=1782246520",
+        hit:false,
+        active:false,
+    },
 ];
 
 const hitListLinks = [
@@ -70,7 +77,8 @@ const deliberateLinks = hitListLinks.length;
 
 // Add positions
 // initially space everything by W+75, H+75
-let num_cols = Math.round(Math.sqrt(hitList.length));
+// sqrt(n * (widthRatio / heightRatio))
+let num_cols = Math.round(Math.sqrt(hitList.length * 3 / 4));
 let col_spacing = cPOLAROID_WIDTH+75;
 let row_spacing = cPOLAROID_HEIGHT+75;
 for (let i = 0; i < hitList.length; i++){
@@ -219,7 +227,14 @@ function draw_polaroid(x, y, rotation, img, name, artist, hit=false, active=fals
     if (!hit) ctx.filter = "none";
     
     // Add the name
-    let fontSize = 25*drawScale;
+    let fontSize;
+    if (name.length > 12){
+        fontSize = 15*drawScale;
+    } else if (name.length > 9){
+        fontSize = 20*drawScale;
+    } else {
+        fontSize = 25*drawScale;
+    }
     ctx.font = fontSize.toString()+"px sans-serif";
     ctx.fillStyle = "#000";
     ctx.fillText(name, (xStart+10)*drawScale, (yStart+cPOLAROID_WIDTH+30)*drawScale);
@@ -265,7 +280,11 @@ function draw_polaroid(x, y, rotation, img, name, artist, hit=false, active=fals
     );
 
     // Add the artist
-    fontSize = 12*drawScale;
+    if (artist.length > 12){
+        fontSize = 10*drawScale;
+    } else {
+        fontSize = 12*drawScale;
+    }
     ctx.font = fontSize.toString()+"px sans-serif";
     ctx.fillStyle = "#000";
     ctx.fillText(artist, (xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH+10)*drawScale, (yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+55)*drawScale);
