@@ -7,6 +7,16 @@ const cPOLAROID_HEIGHT = 200;
 const cPOST_IT_WIDTH = 100;
 const cPOST_IT_HEIGHT = 40;
 
+const O_IMG = new Image();
+O_IMG.src = "./images/O.png";
+const X1_IMG = new Image();
+X1_IMG.src = "./images/X-1.png";
+const X2_IMG = new Image();
+X2_IMG.src = "./images/X-2.png";
+const X3_IMG = new Image();
+X3_IMG.src = "./images/X-3.png";
+const X_IMGs = [X1_IMG, X2_IMG, X3_IMG];
+
 // EDIT THIS
 const hitList = [
     {
@@ -24,9 +34,9 @@ const hitList = [
         active:false,
     },
     {
-        name:"Stardust",
+        name:"Andria",
         artist:"RubyIsAMyth",
-        img_src:"https://images.artfight.net/character/th_75LABGBag8UjXxsW70wqMFJ7vWMBKQ07irn9ibM711t1jJIZ75TlAqHNuA9X.png?t=1751394201",
+        img_src:"https://images.artfight.net/character/th_SD2gI5fNctEJ31CpQF4Lm1mldQJHSM1aO6B8sSvJ8gidpj0SxApCmzTFHKKO.png?t=1781755148",
         hit:false,
         active:false,
     },
@@ -37,12 +47,27 @@ const hitList = [
         hit:false,
         active:false,
     },
+    {
+        name:"Calico",
+        artist:"cuttleryfish",
+        img_src:"https://images.artfight.net/character/th_kpYTm6XEb7C5raD1KoPM4RNi5pwRX6xJfV4strCyOZJNnCbkkHAXLlhtya0d.png?t=1781159424",
+        hit:false,
+        active:false,
+    },
+    {
+        name:"Osha",
+        artist:"Derpitoo",
+        img_src:"https://images.artfight.net/character/th_uvngL0Cd4jBuDqWNrrkxUZqstY98vbe8gTSSTmlPoUaPKrg2SQWcmPxdEV1b.png?t=1750661396",
+        hit:false,
+        active:false,
+    },
 ];
 
 const hitListLinks = [
-    [0, 1],
-    [1, 2],
-    [2, 3],
+    // [0, 1],
+    // [1, 2],
+    // [2, 3],
+    // [3, 4],
 ]
 
 const deliberateLinks = hitListLinks.length;
@@ -53,8 +78,8 @@ let num_cols = Math.round(Math.sqrt(hitList.length));
 let col_spacing = cPOLAROID_WIDTH+75;
 let row_spacing = cPOLAROID_HEIGHT+75;
 for (let i = 0; i < hitList.length; i++){
-    hitList[i].x = 100 + ((i%num_cols)*col_spacing)+Math.floor(Math.random() * 75);
-    hitList[i].y = 50 + (Math.trunc(i/num_cols)*row_spacing)+Math.floor(Math.random() * 75);
+    hitList[i].x = 100 + (Math.trunc(i/num_cols)*col_spacing)+Math.floor(Math.random() * 75);
+    hitList[i].y = 50 + ((i%num_cols)*row_spacing)+Math.floor(Math.random() * 75);
 
     hitList[i].img = new Image();
     hitList[i].img.src = hitList[i].img_src;
@@ -81,7 +106,7 @@ let duplicated;
 for (let i = 0; i < hitList.length; i++){
     for (let j = 0; j < hitList.length; j++){
         if (i != j){
-            if (Math.floor(Math.random() * 3) == 0){
+            if (Math.floor(Math.random() * 5) == 0){
                 duplicated = false;
                 for (let k = 0; k < hitListLinks.length; k++){
                     if (hitListLinks[k][0] == i && hitListLinks[k][1] == j){
@@ -112,16 +137,16 @@ for (let i = 0; i < hitList.length; i++){
 
 
 // functions
-function drawX(x, y, width, height){
+function drawX(x, y, width, height, drawScale=1){
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 10;
     ctx.beginPath();
 
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + width, y + height);
+    ctx.moveTo(x*drawScale, y);
+    ctx.lineTo((x + width)*drawScale, (y + height)*drawScale);
 
-    ctx.moveTo(x + width, y);
-    ctx.lineTo(x, y + height);
+    ctx.moveTo((x + width)*drawScale, y*drawScale);
+    ctx.lineTo(x*drawScale, (y + height)*drawScale);
     ctx.stroke();
 }
 
@@ -142,12 +167,12 @@ function mysterize_text(displayText){
     return newText;
 }
 
-function drawLink(hit1, hit2, passX, passY, offsetX, offsetY, color="red"){
+function drawLink(hit1, hit2, passX, passY, offsetX, offsetY, color="red", drawScale=1){
     ctx.beginPath();
     // Establish the starting point of the parabola
-    ctx.moveTo(hit1.x+offsetX, hit1.y+offsetY); 
+    ctx.moveTo((hit1.x+offsetX)*drawScale, (hit1.y+offsetY)*drawScale); 
     // The peak/vertex will bend toward the pass coords
-    ctx.quadraticCurveTo(passX+offsetX, passY+offsetY, hit2.x+offsetX, hit2.y+offsetY); 
+    ctx.quadraticCurveTo((passX+offsetX)*drawScale, (passY+offsetY)*drawScale, (hit2.x+offsetX)*drawScale, (hit2.y+offsetY)*drawScale); 
 
     // Render the line outline
     ctx.strokeStyle = color;
@@ -155,10 +180,10 @@ function drawLink(hit1, hit2, passX, passY, offsetX, offsetY, color="red"){
     ctx.stroke();
 }
 
-function draw_polaroid(x, y, rotation, img, name, artist, hit=false, active=false) {
+function draw_polaroid(x, y, rotation, img, name, artist, hit=false, active=false, drawScale=1) {
     ctx.save();
     // Move origin to the pin
-    ctx.translate(x, y);
+    ctx.translate(x*drawScale, y*drawScale);
     // Rotate around the pin
     ctx.rotate(rotation);
 
@@ -168,61 +193,66 @@ function draw_polaroid(x, y, rotation, img, name, artist, hit=false, active=fals
     // Draw a shadow
     ctx.fillStyle = "#00000077";
     ctx.fillRect(
-        xStart-7,
-        yStart+7,
-        cPOLAROID_WIDTH-7,
-        cPOLAROID_HEIGHT+7
+        (xStart-7)*drawScale,
+        (yStart+7)*drawScale,
+        (cPOLAROID_WIDTH-7)*drawScale,
+        (cPOLAROID_HEIGHT+7)*drawScale
     );
 
     // Draw the polaroid
     ctx.fillStyle = "white";
     ctx.fillRect(
-        xStart,
-        yStart,
-        cPOLAROID_WIDTH,
-        cPOLAROID_HEIGHT
+        xStart*drawScale,
+        yStart*drawScale,
+        cPOLAROID_WIDTH*drawScale,
+        cPOLAROID_HEIGHT*drawScale
     );
     
     // Draw the background
     ctx.fillStyle = "#aaa";
     ctx.fillRect(
-        xStart+5, yStart+5,
-        cPOLAROID_WIDTH-10,
-        cPOLAROID_WIDTH-10
+        (xStart+5)*drawScale,
+        (yStart+5)*drawScale,
+        (cPOLAROID_WIDTH-10)*drawScale,
+        (cPOLAROID_WIDTH-10)*drawScale
     );
 
     // Draw the image
     if (!hit) ctx.filter = "grayscale(100%) contrast(500%)";
-    ctx.drawImage(img, xStart+5, yStart+5, cPOLAROID_WIDTH-10, cPOLAROID_WIDTH-10);
+    ctx.drawImage(img, (xStart+5)*drawScale, (yStart+5)*drawScale, (cPOLAROID_WIDTH-10)*drawScale, (cPOLAROID_WIDTH-10)*drawScale);
     if (!hit) ctx.filter = "none";
     
     // Add the name
-    ctx.font = "25px sans-serif";
+    let fontSize = 25*drawScale;
+    ctx.font = fontSize.toString()+"px sans-serif";
     ctx.fillStyle = "#000";
-    ctx.fillText(name, xStart+10, yStart+cPOLAROID_WIDTH+30);
+    ctx.fillText(name, (xStart+10)*drawScale, (yStart+cPOLAROID_WIDTH+30)*drawScale);
 
     // Draw X
     if (hit){
-        drawX(xStart, yStart, cPOLAROID_WIDTH, cPOLAROID_WIDTH);
+        // drawX(xStart*drawScale, yStart*drawScale, cPOLAROID_WIDTH*drawScale, cPOLAROID_WIDTH*drawScale);
+        let idx = name.charCodeAt(0) % 3;
+        ctx.drawImage(X_IMGs[idx], xStart*drawScale, yStart*drawScale, cPOLAROID_WIDTH*drawScale, cPOLAROID_WIDTH*drawScale);
     }
 
     // draw circle
     if (active){
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 10;
+        // ctx.strokeStyle = 'red';
+        // ctx.lineWidth = 10;
 
-        ctx.beginPath();
-        ctx.arc(xStart+(cPOLAROID_WIDTH/2), yStart+(cPOLAROID_WIDTH/2), (cPOLAROID_WIDTH/2)-10, 0, 2 * Math.PI);
-        ctx.stroke();
+        // ctx.beginPath();
+        // ctx.arc((xStart+(cPOLAROID_WIDTH/2))*drawScale, (yStart+(cPOLAROID_WIDTH/2))*drawScale, ((cPOLAROID_WIDTH/2)-10)*drawScale, 0, 2 * Math.PI);
+        // ctx.stroke();
+        ctx.drawImage(O_IMG, xStart*drawScale, yStart*drawScale, cPOLAROID_WIDTH*drawScale, cPOLAROID_WIDTH*drawScale);
     }
 
     // Draw the post-it shadow
     ctx.fillStyle = "#00000077";
     ctx.fillRect(
-        xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH,
-        yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+40,
-        cPOST_IT_WIDTH,
-        cPOST_IT_HEIGHT
+        (xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH)*drawScale,
+        (yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+40)*drawScale,
+        cPOST_IT_WIDTH*drawScale,
+        cPOST_IT_HEIGHT*drawScale
     );
 
     // Draw the post-it
@@ -232,32 +262,30 @@ function draw_polaroid(x, y, rotation, img, name, artist, hit=false, active=fals
         ctx.fillStyle = "#fffbcf";
     }
     ctx.fillRect(
-        xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH,
-        yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+30,
-        cPOST_IT_WIDTH,
-        cPOST_IT_HEIGHT
+        (xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH)*drawScale,
+        (yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+30)*drawScale,
+        cPOST_IT_WIDTH*drawScale,
+        cPOST_IT_HEIGHT*drawScale
     );
 
     // Add the artist
-    ctx.font = "12px sans-serif";
+    fontSize = 12*drawScale;
+    ctx.font = fontSize.toString()+"px sans-serif";
     ctx.fillStyle = "#000";
-    ctx.fillText(artist, xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH+10, yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+55);
+    ctx.fillText(artist, (xStart+cPOLAROID_WIDTH-cPOST_IT_WIDTH+10)*drawScale, (yStart+cPOLAROID_HEIGHT-cPOST_IT_HEIGHT+55)*drawScale);
 
     // Draw the pin
     ctx.beginPath();
-    ctx.arc(xStart+(cPOLAROID_WIDTH/2), yStart+7, 5, 0, 2*Math.PI)
+    ctx.arc((xStart+(cPOLAROID_WIDTH/2))*drawScale, (yStart+7)*drawScale, 5*drawScale, 0, 2*Math.PI)
     ctx.fillStyle = "#00000077";
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(xStart+(cPOLAROID_WIDTH/2), yStart+5, 5, 0, 2*Math.PI)
+    ctx.arc((xStart+(cPOLAROID_WIDTH/2))*drawScale, (yStart+5)*drawScale, 5*drawScale, 0, 2*Math.PI)
     ctx.fillStyle = "#00b7ff";
     ctx.fill();
 
     ctx.restore();
 }
-
-// const TEST_IMG = new Image();
-// TEST_IMG.src = "./Characters/Kert.png";
 
 let mouseDown = false;
 let mousePos = {
@@ -270,6 +298,8 @@ let prevMousePos = {
 };
 let scrollOffsetX = 0;
 let scrollOffsetY = 0;
+
+let scrollScale = 1;
 
 document.addEventListener("mousedown", function(e) { 
     mouseDown = true;
@@ -297,7 +327,12 @@ document.addEventListener("mousemove", function(e) {
         prevMousePos.y = mousePos.y;
     }
 });
-
+document.addEventListener("wheel", function(e) {
+    const scrollY = e.deltaY/1000;
+    if (scrollScale-scrollY >= 0.1){
+        scrollScale -= scrollY;
+    }
+});
 
 let mouseDX = 0;
 let mouseDY = 0;
@@ -317,8 +352,8 @@ function draw(){
     mouseDY = 0;
     if (mouseDown){
         if (mousePos.x != -1 && mousePos.y != -1){
-            mouseDX = mousePos.x-prevMousePos.x;
-            mouseDY = prevMousePos.y-mousePos.y;
+            mouseDX = (mousePos.x-prevMousePos.x)/scrollScale;
+            mouseDY = (prevMousePos.y-mousePos.y)/scrollScale;
 
             scrollOffsetX += mouseDX;
             scrollOffsetY -= mouseDY;
@@ -335,22 +370,22 @@ function draw(){
     // draw links
     for (let i = 0; i < hitListLinks.length; i++){
         if (i < deliberateLinks){
-            drawLink(hitList[hitListLinks[i][0]], hitList[hitListLinks[i][1]], hitListLinks[i][2], hitListLinks[i][3], scrollOffsetX, scrollOffsetY, "rgb(0, 174, 255)");
+            drawLink(hitList[hitListLinks[i][0]], hitList[hitListLinks[i][1]], hitListLinks[i][2], hitListLinks[i][3], scrollOffsetX, scrollOffsetY, "rgb(0, 174, 255)", scrollScale);
         } else {
-            drawLink(hitList[hitListLinks[i][0]], hitList[hitListLinks[i][1]], hitListLinks[i][2], hitListLinks[i][3], scrollOffsetX, scrollOffsetY, "red");
+            drawLink(hitList[hitListLinks[i][0]], hitList[hitListLinks[i][1]], hitListLinks[i][2], hitListLinks[i][3], scrollOffsetX, scrollOffsetY, "red", scrollScale);
         }
     }
 
     // draw polaroids
     for (let i = 0; i < hitList.length; i++){
         if (hitList[i].hit){
-            draw_polaroid(hitList[i].x+scrollOffsetX, hitList[i].y+scrollOffsetY, movement*Math.sin(frame/5), hitList[i].img, hitList[i].name, hitList[i].artist, hitList[i].hit, hitList[i].active);
+            draw_polaroid(hitList[i].x+scrollOffsetX, hitList[i].y+scrollOffsetY, movement*Math.sin(frame/5), hitList[i].img, hitList[i].name, hitList[i].artist, hitList[i].hit, hitList[i].active, scrollScale);
         } else {
             // if (frame % 50 == 0){
             //     hitList[i].displayName = mysterize_text(hitList[i].name);
             //     hitList[i].displayArtist = mysterize_text(hitList[i].artist);
             // }
-            draw_polaroid(hitList[i].x+scrollOffsetX, hitList[i].y+scrollOffsetY, movement*Math.sin(frame/5), hitList[i].img, hitList[i].displayName, hitList[i].displayArtist, hitList[i].hit, hitList[i].active);
+            draw_polaroid(hitList[i].x+scrollOffsetX, hitList[i].y+scrollOffsetY, movement*Math.sin(frame/5), hitList[i].img, hitList[i].displayName, hitList[i].displayArtist, hitList[i].hit, hitList[i].active, scrollScale);
         }
     }
 
