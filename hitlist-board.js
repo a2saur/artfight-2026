@@ -64,10 +64,6 @@ const hitList = [
 ];
 
 const hitListLinks = [
-    // [0, 1],
-    // [1, 2],
-    // [2, 3],
-    // [3, 4],
 ]
 
 const deliberateLinks = hitListLinks.length;
