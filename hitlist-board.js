@@ -29,15 +29,15 @@ const hitList = [
     {
         name:"Ophelia",
         artist:"Emiq00",
-        img_src:"https://images.artfight.net/character/VH79bJfEpBgmHeaTOk86WPtPUuaS0hFJ2IOlDwUGQJTrDUAgMgGj7rKKumYB.jpeg?t=1659725685",
-        hit:false,
-        active:true,
+        img_src:"https://images.artfight.net/attack/th_LgdxWlbpue7UgmeZGdwtXBYpkAi9A6hAsfNeRBixxO8vfFvWAfVaTPUh80wf.png?t=1783111497",
+        hit:true,
+        active:false,
     },
     {
         name:"Andria",
         artist:"RubyIsAMyth",
-        img_src:"https://images.artfight.net/character/th_SD2gI5fNctEJ31CpQF4Lm1mldQJHSM1aO6B8sSvJ8gidpj0SxApCmzTFHKKO.png?t=1781755148",
-        hit:false,
+        img_src:"https://images.artfight.net/attack/th_pt33whlyCMISzXMiF33PsuT0Z1TfWcO5zVVi7c8Yfu24cjQCWwt38yledSzl.png?t=1783257273",
+        hit:true,
         active:false,
     },
     {
@@ -59,7 +59,7 @@ const hitList = [
         artist:"Derpitoo",
         img_src:"https://images.artfight.net/character/th_uvngL0Cd4jBuDqWNrrkxUZqstY98vbe8gTSSTmlPoUaPKrg2SQWcmPxdEV1b.png?t=1750661396",
         hit:false,
-        active:false,
+        active:true,
     },
     {
         name:"Minnie Moonstone",
