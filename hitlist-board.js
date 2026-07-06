@@ -45,7 +45,7 @@ const hitList = [
         artist:"sayocae",
         img_src:"https://images.artfight.net/character/th_Ev5Qn6jU7qUmR3jGNavkeDEywIMuf3vMhW3TCmK0iPncc5IanPI7Kl2IW1FT.png?t=1782128657",
         hit:false,
-        active:false,
+        active:true,
     },
     {
         name:"Calico",
@@ -57,9 +57,9 @@ const hitList = [
     {
         name:"Osha",
         artist:"Derpitoo",
-        img_src:"https://images.artfight.net/character/th_uvngL0Cd4jBuDqWNrrkxUZqstY98vbe8gTSSTmlPoUaPKrg2SQWcmPxdEV1b.png?t=1750661396",
-        hit:false,
-        active:true,
+        img_src:"https://images.artfight.net/attack/th_7yxT3r3ljYIUVngzPEUoYmfZQtB2PCruGklyJ3Ybjlbm1qUv4hxS8TdxEK4k.png?t=1783300314",
+        hit:true,
+        active:false,
     },
     {
         name:"Minnie Moonstone",
