@@ -43,16 +43,16 @@ const hitList = [
     {
         name:"Jili",
         artist:"sayocae",
-        img_src:"https://images.artfight.net/character/th_Ev5Qn6jU7qUmR3jGNavkeDEywIMuf3vMhW3TCmK0iPncc5IanPI7Kl2IW1FT.png?t=1782128657",
-        hit:false,
-        active:true,
+        img_src:"https://images.artfight.net/attack/th_kvv5VHa1YsA81sPC3IUw86NEYkt00vncrgjRm3Rusdaiznb9S6gtz0CmV7Ow.png?t=1783386767",
+        hit:true,
+        active:false,
     },
     {
         name:"Calico",
         artist:"cuttleryfish",
         img_src:"https://images.artfight.net/character/th_kpYTm6XEb7C5raD1KoPM4RNi5pwRX6xJfV4strCyOZJNnCbkkHAXLlhtya0d.png?t=1781159424",
         hit:false,
-        active:false,
+        active:true,
     },
     {
         name:"Osha",
