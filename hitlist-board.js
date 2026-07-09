@@ -41,6 +41,13 @@ const hitList = [
         active:false,
     },
     {
+        name:"Ferrous & Dorian",
+        artist:"Lizimire",
+        img_src:"https://images.artfight.net/attack/th_s5oZGkYNTZS29x18WEMDfK7C5pVNcP2EQmFi1WAH3IKR6BmqwbYeTNXLtNvB.png?t=1783558741",
+        hit:true,
+        active:false,
+    },
+    {
         name:"Jili",
         artist:"sayocae",
         img_src:"https://images.artfight.net/attack/th_kvv5VHa1YsA81sPC3IUw86NEYkt00vncrgjRm3Rusdaiznb9S6gtz0CmV7Ow.png?t=1783386767",
@@ -50,9 +57,9 @@ const hitList = [
     {
         name:"Calico",
         artist:"cuttleryfish",
-        img_src:"https://images.artfight.net/character/th_kpYTm6XEb7C5raD1KoPM4RNi5pwRX6xJfV4strCyOZJNnCbkkHAXLlhtya0d.png?t=1781159424",
-        hit:false,
-        active:true,
+        img_src:"https://images.artfight.net/attack/th_2L0DFe0NR1lhOc4jdrr2x8YxmLFea977CGMJ43CyoX3tInG1oEEqMBa7Ua1b.png?t=1783550980",
+        hit:true,
+        active:false,
     },
     {
         name:"Osha",
@@ -66,11 +73,12 @@ const hitList = [
         artist:"Mytholu",
         img_src:"https://images.artfight.net/character/th_AbXlrgEmmg6u4mZ9EaoOvlx7Deq8FfYmOgwDKNV3z5fMRg0bSQfOXyDKK2Gg.png?t=1782246520",
         hit:false,
-        active:false,
+        active:true,
     },
 ];
 
 const hitListLinks = [
+    [0, 3]
 ]
 
 const deliberateLinks = hitListLinks.length;
@@ -110,7 +118,7 @@ let duplicated;
 for (let i = 0; i < hitList.length; i++){
     for (let j = 0; j < hitList.length; j++){
         if (i != j){
-            if (Math.floor(Math.random() * 5) == 0){
+            if (Math.floor(Math.random() * 10) == 0){
                 duplicated = false;
                 for (let k = 0; k < hitListLinks.length; k++){
                     if (hitListLinks[k][0] == i && hitListLinks[k][1] == j){
