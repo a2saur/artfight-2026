@@ -71,7 +71,14 @@ const hitList = [
     {
         name:"Minnie Moonstone",
         artist:"Mytholu",
-        img_src:"https://images.artfight.net/character/th_AbXlrgEmmg6u4mZ9EaoOvlx7Deq8FfYmOgwDKNV3z5fMRg0bSQfOXyDKK2Gg.png?t=1782246520",
+        img_src:"https://images.artfight.net/attack/th_1swboGx0VX9mZo1PTJe99bHx6ibUdpyEzPjVYIM2ZaMQFG2MKSDGoJrIJjsh.png?t=1783777192",
+        hit:true,
+        active:false,
+    },
+    {
+        name:"Silence",
+        artist:"pinkmilkyshaky",
+        img_src:"https://images.artfight.net/character/th_2NqvSOpALu1xNSqbEETJzK902FZeZrQrCFerqa6K7OBZhYQQWmXhs91cKuWx.png?t=1719276494",
         hit:false,
         active:true,
     },
