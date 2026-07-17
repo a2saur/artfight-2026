@@ -48,6 +48,13 @@ const hitList = [
         active:false,
     },
     {
+        name:"dog that hates grapes",
+        artist:"Lizimire",
+        img_src:"https://images.artfight.net/attack/th_b9kdBJAxg8XCoXsnhGisZUzRHyBLTocVQD7WfxP1s5unvrbg2JAsWCZegwB5.png?t=1783872983",
+        hit:true,
+        active:false,
+    },
+    {
         name:"Jili",
         artist:"sayocae",
         img_src:"https://images.artfight.net/attack/th_kvv5VHa1YsA81sPC3IUw86NEYkt00vncrgjRm3Rusdaiznb9S6gtz0CmV7Ow.png?t=1783386767",
@@ -97,16 +104,25 @@ const hitList = [
         active:false,
     },
     {
-        name:"dog that hates grapes",
-        artist:"Lizimire",
-        img_src:"https://images.artfight.net/character/th_HU4JvCmgAhjKPvrUVbhZWXvvZQ8UFTtSd1i6GsI58aqbQU8FzY66GjQ5GEjU.png?t=1783860562",
+        name:"Velvet",
+        artist:"_Ghostduck",
+        img_src:"https://images.artfight.net/attack/th_cAyq8rivJioN0TkzaVkLE0yuywDEOUb6qWhQx2hSjXg5UGNvpN6ZH1Heqljc.png?t=1784302916",
+        hit:true,
+        active:false,
+    },
+    {
+        name:"Tonya Panahi",
+        artist:"PotatoHunter",
+        img_src:"https://images.artfight.net/character/th_FxKjfCD7m66TGdBFkeiOKMb8OVl97lzF7qmmRgLfHhVst9F119tifU4llRN3.png?t=1772315434",
         hit:false,
         active:true,
     },
 ];
 
 const hitListLinks = [
-    [0, 3]
+    [0, 3],
+    [0, 4],
+    [3, 4],
 ]
 
 const deliberateLinks = hitListLinks.length;
@@ -146,7 +162,7 @@ let duplicated;
 for (let i = 0; i < hitList.length; i++){
     for (let j = 0; j < hitList.length; j++){
         if (i != j){
-            if (Math.floor(Math.random() * 10) == 0){
+            if (Math.floor(Math.random() * 15) == 0){
                 duplicated = false;
                 for (let k = 0; k < hitListLinks.length; k++){
                     if (hitListLinks[k][0] == i && hitListLinks[k][1] == j){

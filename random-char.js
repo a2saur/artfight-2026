@@ -166,7 +166,31 @@ const ARTFIGHT_CHARS = [
         link:"https://artfight.net/character/10384547.xmndsbc",
         image:"https://images.artfight.net/character/th_inAePr8plQcdHMvwRO5D5DoEOtMXjjNOmfQSbQ69DrLBf6CguQHN8Cbi3iZl.png?t=1783237536",
         tags:""
-    }
+    },
+    {
+        name:"Blorbo",
+        link:"https://artfight.net/character/10396545.blorbo",
+        image:"https://images.artfight.net/character/th_Q6skJaj6bN1yAodBFrKGGRe7hBfUbSCuafogzPhs1V88tm0IBgrALkzvGl38.png?t=1783259243",
+        tags:"silly, creature"
+    },
+    {
+        name:"Blorbo Bleepus",
+        link:"https://artfight.net/character/10499898.blorbo-bleepus",
+        image:"https://images.artfight.net/character/th_fjsPuiLSnILj8OhHVKT2y9sMuE22LDj4IYlhfD8BWxpChaJCwCth6lrS6YND.png?t=1783386368",
+        tags:"silly, creature"
+    },
+    {
+        name:"Jelly",
+        link:"https://artfight.net/character/10687006.jelly-silly-kitty",
+        image:"https://images.artfight.net/character/th_wmTJ5lHVqEjRg4lSrWLS5r87e0MXwfltO84raXZRn5BgaoGZX2Hh1QXVCQSZ.png?t=1783738234",
+        tags:""
+    },
+    {
+        name:"",
+        link:"",
+        image:"",
+        tags:""
+    },
 ];
 
 for (let i = 0; i < ARTFIGHT_CHARS.length; i++){
