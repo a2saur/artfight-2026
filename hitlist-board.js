@@ -111,11 +111,18 @@ const hitList = [
         active:false,
     },
     {
-        name:"Tonya Panahi",
+        name:"Fabi",
         artist:"PotatoHunter",
-        img_src:"https://images.artfight.net/character/th_FxKjfCD7m66TGdBFkeiOKMb8OVl97lzF7qmmRgLfHhVst9F119tifU4llRN3.png?t=1772315434",
+        img_src:"https://images.artfight.net/character/th_YDLVD0msM5nVGDze6hnxtoUBd3M3jzwFXp2wb7nGNUJRa5XsJ01JoDFzu6XO.png?t=1781801439",
         hit:false,
         active:true,
+    },
+    {
+        name:"Zoberry",
+        artist:"Azophyte",
+        img_src:"https://images.artfight.net/character/th_Vpjo6iLkYqxjPJCUls4spNloTWeOWJphimUFLQxYz7rlbqd4DUD6mQ1HSGUH.png?t=1784493772",
+        hit:false,
+        active:false,
     },
 ];
 
